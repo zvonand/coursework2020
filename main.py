@@ -1,23 +1,11 @@
 #!/usr/bin/env python3
 
-"""
-Deploys network with given backbone topology
-"""
-
-import argparse
-#import netbuilder
-#import net_manager
-#import network as nk
-#import flow_gen as fg
+import sys
 import networkx as nx
-#import os
-#import ovs
 import pickle
-#import utils
-#import copy
-#import matplotlib.pyplot as plt
 
-def get_paths(graph: nx.Graph, fr, to, path_num: int):
+
+def mcmf_mod(graph: nx.Graph, fr, to, path_num: int):
     size = len(graph.edges())
     max_node = size
     for a, b, data in graph.edges(data=True):
@@ -47,22 +35,20 @@ def get_paths(graph: nx.Graph, fr, to, path_num: int):
     return paths
 
 
+
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description='Manage OVS network deployment.'
-    )
 
-    # input data
-    parser.add_argument('graph', type=str, help='path to graph dump')
+    if len(sys.argv) != 2:
+        print ('Usage: main.py [topo_file]')
+        sys.exit(1)
 
-    args = parser.parse_args()
+    with open(sys.argv[1], 'rb') as fp:
+        g = pickle.load(fp)
 
-    with open(args.graph, 'rb') as fp:
-        graph = pickle.load(fp)
-
-    if isinstance(graph, nx.MultiGraph):
+    if isinstance(g, nx.MultiGraph):
         print('Warning: graph was converted from MultiGraph to Graph')
-        graph = nx.Graph(graph)
+        g = nx.Graph(g)
 
-    paths = get_paths(graph, 1, 5, 3)
+    paths = mcmf_mod(g, 1, 5, 3)
     print (paths)
