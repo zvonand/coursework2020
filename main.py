@@ -4,55 +4,70 @@ import sys
 import networkx as nx
 import pickle
 
-def convert_graph (base: nx.Graph) -> nx.Graph:
-    #for now assume initial graph was not a multigraph
-    ret = base
-    base_edges = base.edges()
-    size = len(base.edges())
-    max_node = size
-
-    for a, b in base_edges:
-        for i in range(base[a][b]['cap']):
-            ret.add_edge(a, max_node, cap=1, wt=1)
-            ret.add_edge(max_node, b, cap=1, wt=1)
-            max_node += 1
-
-    return ret
 
 
-def find_paths(base_graph: nx.Graph, fr, to, path_num: int, cap_req: int):
+def pathWeight(g: nx.Graph, path):
+    if len(path) <= 1:
+        return 0
+    weight = 0
+    for i in range(len(path)-1):
+        weight += g[path[i]][path[i+1]]['wt']
+    return weight
 
-    graph = nx.Graph() #convert_graph(nx.Graph(base_graph))
+def pathCapacity(g: nx.Graph, path):
+    if len(path) <= 1:
+        return 0
+    capacity = g[path[0]][path[1]]['cap']
+    for i in range(1, len(path)-1):
+        link_cap =  g[path[i]][path[i+1]]['cap']
+        if link_cap < capacity:
+            capacity = link_cap
+    return capacity
 
-    size = len(base_graph.edges())
-    max_node = size
+def removePath(g: nx.Graph, path, path_cap):
+    for i in range(0, len(path)-1):
+        g[path[i]][path[i+1]]['cap'] -= path_cap
 
-    for a, b in base_graph.edges():
+def addPath(g: nx.Graph, path, path_cap):
+    for i in range(0, len(path)-1):
+        g[path[i]][path[i+1]]['cap'] += path_cap
 
-        graph.add_edge(a, b, cap=1, wt=0)
-        for i in range(1, path_num):
-            graph.add_edge(a, max_node + i - 1, cap=1, wt=i)
-            graph.add_edge(max_node + i - 1, b, cap=1, wt=0)
-        max_node += path_num - 1
+def maxFlowWoPath(g: nx.Graph, path, path_cap):
+    removePath(g, path, path_cap)
+    flow = nx.maximum_flow(g, path[0], path[-1], capacity='cap')[0]
+    addPath(g, path, path_cap)
+    return flow
 
-    graph.add_edge(to, max_node, cap=cap_req, wt=0)
-    finish = max_node
-    mfmc = nx.max_flow_min_cost(graph, fr, finish, capacity='cap', weight='wt')
-    paths = []
 
-    for counter in range(path_num):
-        i = fr
-        path = [fr]
-        while i != to:
-            for key, value in mfmc[i].items():
-                if value == 1:
-                    mfmc[i][key] = 0
-                    path.append(key)
-                    i = key
-                    break
-        paths.append(path)
+'''
+By now, cost is declared as:
+    used nodes percentage                   topology overload
+(path_length/total_nodes * 100) + (flow_occupance/max_path_capacity * 100)
+'''
+def pathCost(g: nx.Graph, path):
+    max_cap = pathCapacity(g, path)
+    flow_with = nx.maximum_flow(g, path[0], path[-1], capacity='cap')
+    flow_without = maxFlowWoPath(g, path, max_cap)
+    if flow_without == 0:
+        return -1
+    return (flow_with - flow_without-max_cap)*100//max_cap + len(path)*100//g.number_of_nodes()
 
-    return paths
+
+
+
+
+def alg(g: nx.Graph, fr=1, to=1, cap_req=1, paths):
+    # capacity = 0
+    # paths = {}
+    # candidates = nx.all_simple_paths(g, fr, to).sort(key=len)
+    #
+    # req_met = False
+    # while not req_met:
+    #     if len(candidates) == 0:
+    #         return {}
+    #
+    #     path = paths[0]
+
 
 
 
@@ -68,5 +83,6 @@ if __name__ == "__main__":
         print('Warning: graph was converted from MultiGraph to Graph')
         g = nx.Graph(g)
 
-    paths = find_paths(g, 1, 5, 1, 66)
-    print (paths)
+    # print(g[1][8]['cap'])
+    # alg(g)
+    # print(g[1][8]['cap'])
