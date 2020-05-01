@@ -46,27 +46,51 @@ By now, cost is declared as:
 '''
 def pathCost(g: nx.Graph, path):
     max_cap = pathCapacity(g, path)
-    flow_with = nx.maximum_flow(g, path[0], path[-1], capacity='cap')
+    flow_with = nx.maximum_flow(g, path[0], path[-1], capacity='cap')[0]
     flow_without = maxFlowWoPath(g, path, max_cap)
     if flow_without == 0:
         return -1
-    return (flow_with - flow_without-max_cap)*100//max_cap + len(path)*100//g.number_of_nodes()
+    return (flow_with - flow_without - max_cap)*100//max_cap + len(path)*100//g.number_of_nodes()
+
+def getNextPath(g: nx.Graph, candidates):
+    return candidates[0]
 
 
+'''
+somehow relate part of capacity taken to path weight
+pathCost//200
+'''
+def optimalCapacity(g: nx.Graph, path):
+    return (1 - pathCost(g, path)//200) * pathCapacity(g, path)
 
 
+'''
+Returnd a dictionary {path_list: path_flow}
+'''
+def findPaths(g: nx.Graph, fr, to, cap_req=1):
+    capacity, cost = 0, 0
+    paths = {}
+    candidates = list(nx.all_simple_paths(g, fr, to))
+    candidates.sort(key=lambda x: pathCost(g, x))
 
-def alg(g: nx.Graph, fr=1, to=1, cap_req=1, paths):
-    # capacity = 0
-    # paths = {}
-    # candidates = nx.all_simple_paths(g, fr, to).sort(key=len)
-    #
-    # req_met = False
-    # while not req_met:
-    #     if len(candidates) == 0:
-    #         return {}
-    #
-    #     path = paths[0]
+    req_met = False
+    while not req_met:
+        if len(candidates) == 0:
+            return {}
+        path = getNextPath(g, candidates)
+        cost += pathCost(g, path)
+        path_cap = optimalCapacity(g, path)
+        if path_cap >= (cap_req - capacity):
+            path_cap = cap_req - capacity
+        paths[tuple(path)] = path_cap
+        removePath(g, path, path_cap)
+        capacity += path_cap
+
+        candidates.remove(path)
+        if capacity >= cap_req:
+            req_met = True
+    return paths
+
 
 
 
@@ -84,5 +108,6 @@ if __name__ == "__main__":
         g = nx.Graph(g)
 
     # print(g[1][8]['cap'])
-    # alg(g)
+    print(findPaths(g, 1, 8, 23))
+    print(findPaths(g, 1, 8, 33))
     # print(g[1][8]['cap'])
