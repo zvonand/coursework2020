@@ -60,8 +60,20 @@ for tp in os.listdir('topo/'):
             lst = []
             paths = nx.all_simple_paths(g, a, b)
             for path in paths:
-                lst.append((path, pathCost(g, path)))
+                lst.append([path, pathCost(g, path)])
+
+            #reducing by common minimum
+            common_min = min(lst, key = lambda x: x[1])[1]
+            for elem in lst:
+                elem[1] -= common_min
+            #reducing to 0..199
+            common_max = max(lst, key = lambda x: x[1])[1]
+            div_coeff = common_max // 100
+            if div_coeff > 1:
+                for elem in lst:
+                    elem[1] = elem[1] // div_coeff
+            #finally, add to dictionary
             wts[(a, b)] = lst
-    #print(wts)
+
     with open('path_weights/' + tp, 'wb') as fp:
         pickle.dump(wts, fp)
