@@ -3,6 +3,7 @@ import networkx as nx
 import pickle
 
 
+mf = 0
 
 def pathWeight(g: nx.Graph, path):
     if len(path) <= 1:
@@ -44,15 +45,20 @@ By now, cost is declared as:
 '''
 #TODO: reduce number of maxflows
 def pathCost(g: nx.Graph, path):
+    global mf
     max_cap = pathCapacity(g, path)
-    flow_with = nx.maximum_flow(g, path[0], path[-1], capacity='cap')[0]
-    flow_without = maxFlowWoPath(g, path, max_cap)
-    if flow_without == 0:
+    if max_cap == 0:
         return -1
-    return (flow_with - flow_without - max_cap)*100//max_cap + len(path)*100//g.number_of_nodes()
+    flow_with = mf
+    flow_without = maxFlowWoPath(g, path, max_cap)
+    mf = flow_without
+    print(f'path: {path},  overload cost: {(flow_with - flow_without - max_cap)*100//max_cap}, len cost: {len(path)*10//g.number_of_nodes()}')
+    return (flow_with - flow_without - max_cap)*100//max_cap + len(path)*10//g.number_of_nodes()
 
 def getNextPath(g: nx.Graph, candidates):
-    return candidates[0]
+    global mf
+    ret = min(candidates, key=lambda x: pathCost(g, x))
+    return ret
 
 
 '''
@@ -67,17 +73,25 @@ def optimalCapacity(g: nx.Graph, path):
 Return a dictionary {path_list: path_flow}
 '''
 def findPaths(g: nx.Graph, fr, to, cap_req=1):
+    global mf
+    if cap_req > mf:
+        print("Denied: no sufficient paths")
+        return {}
     capacity, cost = 0, 0
     paths = {}
     candidates = list(nx.all_simple_paths(g, fr, to))
-    candidates.sort(key=lambda x: pathCost(g, x))
 
     req_met = False
     while not req_met:
         if len(candidates) == 0:
-            return {}
+            break
+        mf = nx.maximum_flow(g, fr, to, capacity='cap')[0]
         path = getNextPath(g, candidates)
-        cost += pathCost(g, path)
+        path_cost = pathCost(g, path)
+        if path_cost == -1:
+            candidates.remove(path)
+            continue
+        cost += path_cost
         path_cap = optimalCapacity(g, path)
         if path_cap >= (cap_req - capacity):
             path_cap = cap_req - capacity

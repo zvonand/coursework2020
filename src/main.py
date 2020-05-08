@@ -3,8 +3,7 @@
 import sys
 import networkx as nx
 import pickle
-from complicated import *
-
+import complicated
 
 
 if __name__ == "__main__":
@@ -19,5 +18,5 @@ if __name__ == "__main__":
         print('Warning: graph was converted from MultiGraph to Graph')
         g = nx.Graph(g)
 
-    print(findPaths(g, 1, 8, 23))
-    print(findPaths(g, 1, 8, 33))
+    #print ("{:25s}   nodes: {:3d}   time: ".format(sys.argv[1], g.number_of_nodes()))
+    print(complicated.findPaths(g, 1, 4, 60))
