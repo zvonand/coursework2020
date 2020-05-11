@@ -54,7 +54,7 @@ def rndAll():
         with open('topo/' + tp, 'wb') as fp:
             pickle.dump(newg, fp)
 
-
+sys.exit(0)
 if len(sys.argv) == 2:
     rndOne(sys.argv[1])
 else:

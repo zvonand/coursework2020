@@ -17,5 +17,5 @@ g[1][2]['cap'] = 8
 g[2][3]['cap'] = 8
 g[3][4]['cap'] = 8
 
-with open('topo/aaa', 'wb') as fp:
+with open('topo/Aaa', 'wb') as fp:
     pickle.dump(g, fp)

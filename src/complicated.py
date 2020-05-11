@@ -51,6 +51,7 @@ def pathCost(g: nx.Graph, path):
         return -1
     flow_with = mf
     flow_without = maxFlowWoPath(g, path, max_cap)
+    print(flow_with, flow_without)
     mf = flow_without
     print(f'path: {path},  overload cost: {(flow_with - flow_without - max_cap)*100//max_cap}, len cost: {len(path)*10//g.number_of_nodes()}')
     return (flow_with - flow_without - max_cap)*100//max_cap + len(path)*10//g.number_of_nodes()
@@ -66,7 +67,11 @@ somehow relate part of capacity taken to path weight
 pathCost//200
 '''
 def optimalCapacity(g: nx.Graph, path):
-    return (1 - pathCost(g, path)//200) * pathCapacity(g, path)
+    pc = pathCapacity(g, path)
+    op = (1 - pathCost(g, path)//200) * pc
+    if pc < op:
+        op = pc
+    return op
 
 
 '''
@@ -74,6 +79,7 @@ Return a dictionary {path_list: path_flow}
 '''
 def findPaths(g: nx.Graph, fr, to, cap_req=1):
     global mf
+    mf = nx.maximum_flow(g, fr, to, capacity='cap')[0]
     if cap_req > mf:
         print("Denied: no sufficient paths")
         return {}
@@ -85,7 +91,7 @@ def findPaths(g: nx.Graph, fr, to, cap_req=1):
     while not req_met:
         if len(candidates) == 0:
             break
-        mf = nx.maximum_flow(g, fr, to, capacity='cap')[0]
+
         path = getNextPath(g, candidates)
         path_cost = pathCost(g, path)
         if path_cost == -1:
@@ -98,6 +104,7 @@ def findPaths(g: nx.Graph, fr, to, cap_req=1):
         paths[tuple(path)] = path_cap
         removePath(g, path, path_cap)
         capacity += path_cap
+        mf = nx.maximum_flow(g, fr, to, capacity='cap')[0]
 
         candidates.remove(path)
         if capacity >= cap_req:

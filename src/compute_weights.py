@@ -41,9 +41,14 @@ def pathCost(g: nx.Graph, path):
 
 
 
-#tp = 'aaa'
+
+files = []
 for tp in os.listdir('topo/'):
-    print('Processing: ', tp)
+    files.append(tp)
+
+files.sort()
+
+for tp in files:
     with open('topo/' + tp, 'rb') as fp:
         g = pickle.load(fp)
 
@@ -51,12 +56,13 @@ for tp in os.listdir('topo/'):
         print('Warning: graph was converted from MultiGraph to Graph')
         g = nx.Graph(g)
 
-    wts = {}
+    print(f'Processing: {tp}, nodes: {g.number_of_nodes()}, edges: {g.number_of_edges()}')
 
-    for a in g.nodes:
-        for b in g.nodes:
-            if a == b:
-                continue
+    wts = {}
+    nodes_lst = list(g.nodes)
+    for i in range(len(nodes_lst)-1):
+        for j in range(i+1, len(nodes_lst)):
+            a, b = nodes_lst[i], nodes_lst[j]
             lst = []
             paths = nx.all_simple_paths(g, a, b)
             for path in paths:
@@ -73,7 +79,12 @@ for tp in os.listdir('topo/'):
                 for elem in lst:
                     elem[1] = elem[1] // div_coeff
             #finally, add to dictionary
-            wts[(a, b)] = lst
+            dct = {}
+            for e in lst:
+                dct[tuple(e[0])] = e[1]
+            wts[(a, b)] = dct
 
     with open('path_weights/' + tp, 'wb') as fp:
         pickle.dump(wts, fp)
+
+    print(f'Done with: {tp}')

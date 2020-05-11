@@ -10,7 +10,7 @@ def removePath(g: nx.Graph, path, path_cap):
         g[path[i]][path[i+1]]['cap'] -= path_cap
 
 
-tp =  'aaa'
+tp =  'Aaa'
 with open('topo/' + tp, 'rb') as fp:
     g = pickle.load(fp)
 
