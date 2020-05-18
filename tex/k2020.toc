@@ -1,13 +1,24 @@
 \babel@toc {russian}{}
-\contentsline {section}{\numberline {1.\relax }\IeC {\CYRV }\IeC {\cyrv }\IeC {\cyre }\IeC {\cyrd }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre }}{3}% 
-\contentsline {subsection}{\numberline {1.1.\relax }\IeC {\CYRC }\IeC {\cyre }\IeC {\cyrl }\IeC {\cyrsftsn } \IeC {\cyrr }\IeC {\cyra }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrt }\IeC {\cyrery }}{3}% 
-\contentsline {subsection}{\numberline {1.2.\relax }\IeC {\CYRA }\IeC {\cyrk }\IeC {\cyrt }\IeC {\cyru }\IeC {\cyra }\IeC {\cyrl }\IeC {\cyrsftsn }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyrsftsn }}{3}% 
-\contentsline {subsection}{\numberline {1.3.\relax }\IeC {\CYRZ }\IeC {\cyra }\IeC {\cyrd }\IeC {\cyra }\IeC {\cyrch }\IeC {\cyri } \IeC {\cyrr }\IeC {\cyra }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrt }\IeC {\cyrery }}{3}% 
-\contentsline {section}{\numberline {2.\relax }\IeC {\CYRF }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyrm }\IeC {\cyra }\IeC {\cyrl }\IeC {\cyrsftsn }\IeC {\cyrn }\IeC {\cyra }\IeC {\cyrya } \IeC {\cyrp }\IeC {\cyro }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyrk }\IeC {\cyra } \IeC {\cyrz }\IeC {\cyra }\IeC {\cyrd }\IeC {\cyra }\IeC {\cyrch }\IeC {\cyri }}{3}% 
-\contentsline {section}{\numberline {3.\relax }\IeC {\CYRO }\IeC {\cyrb }\IeC {\cyrz }\IeC {\cyro }\IeC {\cyrr } \IeC {\cyrs }\IeC {\cyru }\IeC {\cyrshch }\IeC {\cyre }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyrv }\IeC {\cyru }\IeC {\cyryu }\IeC {\cyrshch }\IeC {\cyri }\IeC {\cyrh } \IeC {\cyrr }\IeC {\cyre }\IeC {\cyrsh }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyrishrt }}{4}% 
-\contentsline {subsection}{\numberline {3.1.\relax }\IeC {\CYRK }\IeC {\cyrr }\IeC {\cyri }\IeC {\cyrt }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyri }\IeC {\cyri } \IeC {\cyro }\IeC {\cyrb }\IeC {\cyrz }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyra }}{4}% 
-\contentsline {subsection}{\numberline {3.2.\relax }\IeC {\CYRZH }\IeC {\cyra }\IeC {\cyrd }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrishrt } \IeC {\cyra }\IeC {\cyrl }\IeC {\cyrg }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyri }\IeC {\cyrt }\IeC {\cyrm }}{4}% 
-\contentsline {subsection}{\numberline {3.3.\relax }k-max-min disjoint paths}{4}% 
-\contentsline {subsection}{\numberline {3.4.\relax }Max Flow, \IeC {\cyri }\IeC {\cyrl }\IeC {\cyri } \IeC {\cyrz }\IeC {\cyra }\IeC {\cyrd }\IeC {\cyra }\IeC {\cyrch }\IeC {\cyra } \IeC {\cyro } \IeC {\cyrm }\IeC {\cyra }\IeC {\cyrk }\IeC {\cyrs }\IeC {\cyri }\IeC {\cyrm }\IeC {\cyra }\IeC {\cyrl }\IeC {\cyrsftsn }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrm } \IeC {\cyrp }\IeC {\cyro }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrk }\IeC {\cyre }}{4}% 
-\contentsline {subsection}{\numberline {3.5.\relax }MCMF, \IeC {\cyri }\IeC {\cyrl }\IeC {\cyri } Min-Cost Max-Flow\cite {stepsmel}}{5}% 
-\contentsline {subsection}{\numberline {3.6.\relax }\IeC {\CYRV }\IeC {\cyrery }\IeC {\cyrv }\IeC {\cyro }\IeC {\cyrd }\IeC {\cyrery }}{5}% 
+\contentsline {section}{\numberline {1.\relax }Введение}{3}%
+\contentsline {subsection}{\numberline {1.1.\relax }Цель работы}{3}%
+\contentsline {subsection}{\numberline {1.2.\relax }Актуальность}{3}%
+\contentsline {subsection}{\numberline {1.3.\relax }Задачи работы}{3}%
+\contentsline {section}{\numberline {2.\relax }Формальная постановка задачи}{3}%
+\contentsline {section}{\numberline {3.\relax }Обзор существующих решений}{4}%
+\contentsline {subsection}{\numberline {3.1.\relax }Критерии обзора}{4}%
+\contentsline {subsection}{\numberline {3.2.\relax }Жадный алгоритм}{4}%
+\contentsline {subsection}{\numberline {3.3.\relax }k-max-min disjoint paths}{5}%
+\contentsline {subsection}{\numberline {3.4.\relax }Max Flow, или задача о максимальном потоке}{5}%
+\contentsline {subsection}{\numberline {3.5.\relax }MCMF, или Min-Cost Max-Flow\cite {stepsmel}}{5}%
+\contentsline {subsection}{\numberline {3.6.\relax }Выводы}{5}%
+\contentsline {section}{\numberline {4.\relax }Предложенные решения}{6}%
+\contentsline {subsection}{\numberline {4.1.\relax }Алгоритмы, требующие предварительных действий}{6}%
+\contentsline {subsubsection}{\numberline {4.1.1.\relax }Жадный с предрассчитанными маршрутами}{6}%
+\contentsline {paragraph}{Подготовительные шаги}{6}%
+\contentsline {paragraph}{Основной алгоритм}{6}%
+\contentsline {paragraph}{Особенности подхода}{6}%
+\contentsline {subsubsection}{\numberline {4.1.2.\relax }Жадный с предрассчитанными весами}{7}%
+\contentsline {paragraph}{Подготовительные шаги}{7}%
+\contentsline {paragraph}{Основной алгоритм}{7}%
+\contentsline {paragraph}{Особенности подхода}{7}%
+\contentsline {subsubsection}{\numberline {4.1.3.\relax }Модифицированный MCMF \cite {stepsmel}}{7}%
