@@ -49,11 +49,11 @@ for tp in files:
                     succeeded += 1
                 else:
                     failed += 1
-                    print(f'fail at {tp}, from {a} to {b}')
+                    #print(f'fail at {tp}, from {a} to {b}')
                 for key in paths.keys():
                     mcmf.addPath(g, key, paths[key])
             except Timeout:
                 tout += 1
-                
+
     print(f'{tp}; succeeded: {succeeded}, failed: {failed}, timed out: {tout}')
     #print(complicated.findPaths(g, 1, 4, 9))

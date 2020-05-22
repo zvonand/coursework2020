@@ -4,6 +4,7 @@ import pickle
 import copy
 
 def pathCapacity(g: nx.Graph, path):
+    #print(path)
     if len(path) <= 1:
         return 0
     capacity = g[path[0]][path[1]]['cap']
@@ -38,10 +39,23 @@ def pathCost(g: nx.Graph, path):
     #print(f'path: {path},  overload cost: {(flow_with - flow_without - max_cap)*100//max_cap}, len cost: {len(path)*10//g.number_of_nodes()}')
     return (flow_with - flow_without - max_cap)*100//max_cap + len(path)*10//g.number_of_nodes()
 
+def removeCycles(path):
+    i = 0
+    while i < len(path):
+        if path[i] in path[i+1:]:
+            j = len(path) - 1
+            while path[j] != path[i]:
+                j -= 1
+            for k in range(i+1, j+1):
+                del path[i+1]
+        i += 1
+    return path
+
+
 def getNPaths(g: nx.Graph, fr, to, path_num: int):
     graph = copy.deepcopy(g)
-    size = len(graph.edges())
-    max_node = size
+    size = graph.number_of_nodes()
+    max_node = size+1
     edges = list(graph.edges)
     for a, b in edges:
         mul = 0
@@ -56,7 +70,6 @@ def getNPaths(g: nx.Graph, fr, to, path_num: int):
     sink = graph.number_of_nodes()+1
     graph.add_edge(to, sink, cap=path_num)
     mfmc = nx.max_flow_min_cost(graph, fr, sink, capacity='cap', weight='wt')
-    #print(mfmc)
     paths = []
     finish = to
 
@@ -73,8 +86,10 @@ def getNPaths(g: nx.Graph, fr, to, path_num: int):
 
         pth = []
         for elem in path:
-            if elem < size and not (elem in pth):
+            if elem <= size:
                 pth.append(elem)
+
+        pth = removeCycles(pth)
 
         if not pth in paths:
             paths.append(pth)
@@ -103,5 +118,4 @@ def findPaths(g: nx.Graph, fr, to, req = 10, path_num = 4):
         return 0
     paths = getNPaths(g, fr, to, path_num)
     paths = balanceCapacities(g, paths, req)
-    print(paths)
     return paths
