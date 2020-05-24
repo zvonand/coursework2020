@@ -24,4 +24,4 @@
 \contentsline {paragraph}{Подготовительные шаги}{10}%
 \contentsline {paragraph}{Основной алгоритм}{10}%
 \contentsline {paragraph}{Особенности подхода}{10}%
-\contentsline {subsubsection}{\numberline {5.1.3.\relax }Модифицированный MCMF \cite {stepsmel}}{10}%
+\contentsline {subsubsection}{\numberline {5.1.3.\relax }Модифицированный MCMF}{10}%

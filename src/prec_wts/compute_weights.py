@@ -5,7 +5,15 @@ import os
 import networkx as nx
 import pickle
 import collections
+import signal
 
+class Timeout(Exception):
+    pass
+
+def handler(sig, frame):
+    raise Timeout
+
+signal.signal(signal.SIGALRM, handler)
 
 def pathCapacity(g: nx.Graph, path):
     if len(path) <= 1:
@@ -50,49 +58,53 @@ for tp in os.listdir('topo/'):
 files.sort()
 
 for tp in files:
-    with open('topo/' + tp, 'rb') as fp:
-        g = pickle.load(fp)
+    signal.alarm(500)
+    try:
+        with open('topo/' + tp, 'rb') as fp:
+            g = pickle.load(fp)
 
-    if isinstance(g, nx.MultiGraph):
-        print('Warning: graph was converted from MultiGraph to Graph')
-        g = nx.Graph(g)
+        if isinstance(g, nx.MultiGraph):
+            print('Warning: graph was converted from MultiGraph to Graph')
+            g = nx.Graph(g)
 
-    print(f'Processing: {tp}, nodes: {g.number_of_nodes()}, edges: {g.number_of_edges()}')
+        print(f'Processing: {tp}, nodes: {g.number_of_nodes()}, edges: {g.number_of_edges()}')
 
-    wts = {}
+        wts = {}
 
-    nodes_lst = sorted(list(g.nodes))
+        nodes_lst = sorted(list(g.nodes))
 
-    for i in range(len(nodes_lst)-1):
-        for j in range(i+1, len(nodes_lst)):
-            if g.has_edge(nodes_lst[i], nodes_lst[j]):
-                wts[(nodes_lst[i], nodes_lst[j])] = 0
+        for i in range(len(nodes_lst)-1):
+            for j in range(i+1, len(nodes_lst)):
+                if g.has_edge(nodes_lst[i], nodes_lst[j]):
+                    wts[(nodes_lst[i], nodes_lst[j])] = 0
 
-    for i in range(len(nodes_lst)-1):
-        for j in range(i+1, len(nodes_lst)):
-            paths = nx.all_simple_paths(g, nodes_lst[i], nodes_lst[j])
-            for path in paths:
-                cost = pathCost(g, path)
-                for k in range(len(path) - 1):
-                    if path[k] < path[k+1]:
-                        wts[(path[k], path[k+1])] += cost
-                    else:
-                        wts[(path[k+1], path[k])] += cost
+        for i in range(len(nodes_lst)-1):
+            for j in range(i+1, len(nodes_lst)):
+                paths = nx.all_simple_paths(g, nodes_lst[i], nodes_lst[j])
+                for path in paths:
+                    cost = pathCost(g, path)
+                    for k in range(len(path) - 1):
+                        if path[k] < path[k+1]:
+                            wts[(path[k], path[k+1])] += cost
+                        else:
+                            wts[(path[k+1], path[k])] += cost
 
-    mn, mx = wts[list(g.edges)[0]], wts[list(g.edges)[0]]
-    for i in wts.keys():
-        if wts[i] < mn:
-            mn = wts[i]
-        if wts[i] > mx:
-            mx = wts[i]
+        mn, mx = wts[list(g.edges)[0]], wts[list(g.edges)[0]]
+        for i in wts.keys():
+            if wts[i] < mn:
+                mn = wts[i]
+            if wts[i] > mx:
+                mx = wts[i]
 
-    koeff = 100 / (mx - mn)
-    for i in wts.keys():
-        wts[i] = int((wts[i] - mn) * koeff)
-        g[i[0]][i[1]]['wt'] = wts[i]
+        koeff = 100 / (mx - mn)
+        for i in wts.keys():
+            wts[i] = int((wts[i] - mn) * koeff)
+            g[i[0]][i[1]]['wt'] = wts[i]
 
 
-    with open('edge_weights/' + tp, 'wb') as fp:
-        pickle.dump(g, fp)
+        with open('edge_weights/' + tp, 'wb') as fp:
+            pickle.dump(g, fp)
 
-    print(f'Done with: {tp}')
+        print(f'Done with: {tp}')
+    except Timeout:
+        print(f'{tp} timed out')

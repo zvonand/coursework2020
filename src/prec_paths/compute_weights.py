@@ -4,6 +4,16 @@ import sys
 import os
 import networkx as nx
 import pickle
+import signal
+import random as rd
+
+class Timeout(Exception):
+    pass
+
+def handler(sig, frame):
+    raise Timeout
+
+signal.signal(signal.SIGALRM, handler)
 
 
 def pathCapacity(g: nx.Graph, path):
@@ -49,42 +59,49 @@ for tp in os.listdir('topo/'):
 files.sort()
 
 for tp in files:
-    with open('topo/' + tp, 'rb') as fp:
-        g = pickle.load(fp)
+    signal.alarm(500)
+    try:
+        with open('topo/' + tp, 'rb') as fp:
+            g = pickle.load(fp)
 
-    if isinstance(g, nx.MultiGraph):
-        print('Warning: graph was converted from MultiGraph to Graph')
-        g = nx.Graph(g)
+        if isinstance(g, nx.MultiGraph):
+            print('Warning: graph was converted from MultiGraph to Graph')
+            g = nx.Graph(g)
 
-    print(f'Processing: {tp}, nodes: {g.number_of_nodes()}, edges: {g.number_of_edges()}')
+        for a, b in g.edges:
+            g[a][b]['cap'] = 100
 
-    wts = {}
-    nodes_lst = list(g.nodes)
-    for i in range(len(nodes_lst)-1):
-        for j in range(i+1, len(nodes_lst)):
-            a, b = nodes_lst[i], nodes_lst[j]
-            lst = []
-            paths = nx.all_simple_paths(g, a, b)
-            for path in paths:
-                lst.append([path, pathCost(g, path)])
+        print(f'Processing: {tp}, nodes: {g.number_of_nodes()}, edges: {g.number_of_edges()}')
 
-            #reducing by common minimum
-            common_min = min(lst, key = lambda x: x[1])[1]
-            for elem in lst:
-                elem[1] -= common_min
-            #reducing to 0..199
-            common_max = max(lst, key = lambda x: x[1])[1]
-            div_coeff = common_max // 100
-            if div_coeff > 1:
+        wts = {}
+        nodes_lst = list(g.nodes)
+        for i in range(len(nodes_lst)-1):
+            for j in range(i+1, len(nodes_lst)):
+                a, b = nodes_lst[i], nodes_lst[j]
+                lst = []
+                paths = nx.all_simple_paths(g, a, b)
+                for path in paths:
+                    lst.append([path, pathCost(g, path)])
+
+                #reducing by common minimum
+                common_min = min(lst, key = lambda x: x[1])[1]
                 for elem in lst:
-                    elem[1] = elem[1] // div_coeff
-            #finally, add to dictionary
-            dct = {}
-            for e in lst:
-                dct[tuple(e[0])] = e[1]
-            wts[(a, b)] = dct
+                    elem[1] -= common_min
+                #reducing to 0..199
+                common_max = max(lst, key = lambda x: x[1])[1]
+                div_coeff = common_max // 100
+                if div_coeff > 1:
+                    for elem in lst:
+                        elem[1] = elem[1] // div_coeff
+                #finally, add to dictionary
+                dct = {}
+                for e in lst:
+                    dct[tuple(e[0])] = e[1]
+                wts[(a, b)] = dct
 
-    with open('path_weights/' + tp, 'wb') as fp:
-        pickle.dump(wts, fp)
+        with open('path_weights/' + tp, 'wb') as fp:
+            pickle.dump(wts, fp)
 
-    print(f'Done with: {tp}')
+        print(f'Done with: {tp}')
+    except Timeout:
+        print(f'{tp} timed out')

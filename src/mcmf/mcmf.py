@@ -112,10 +112,20 @@ def balanceCapacities(g: nx.Graph, paths, req):
     return ret
 
 
-def findPaths(g: nx.Graph, fr, to, req = 10, path_num = 4):
+def findPaths(g: nx.Graph, fr, to, req = 10):
     mf = nx.maximum_flow(g, fr, to, capacity='cap')[0]
     if req > mf or req == 0:
-        return 0
-    paths = getNPaths(g, fr, to, path_num)
-    paths = balanceCapacities(g, paths, req)
-    return paths
+        return {}
+    p = 3
+    ret = {}
+    pr_paths = []
+    paths = [0]
+    while ret == {} and pr_paths != paths:
+        for k in ret.keys():
+            addPath(g, k, ret[k])
+            del ret[k]
+        paths = getNPaths(g, fr, to, p)
+        pr_paths = paths
+        p += 1
+        ret = balanceCapacities(g, paths, req)
+    return ret
