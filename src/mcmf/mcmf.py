@@ -4,7 +4,6 @@ import pickle
 import copy
 
 def pathCapacity(g: nx.Graph, path):
-    #print(path)
     if len(path) <= 1:
         return 0
     capacity = g[path[0]][path[1]]['cap']
@@ -100,7 +99,7 @@ def balanceCapacities(g: nx.Graph, paths, req):
     cap = 0
     while paths != []:
         if (cap == req):
-            return ret
+            break
         path = min(paths, key=lambda x: pathCost(g, x))
         pc = pathCapacity(g, path)
         ret[tuple(path)] = min(pc, req-cap)
@@ -109,7 +108,13 @@ def balanceCapacities(g: nx.Graph, paths, req):
         paths.remove(path)
     if cap < req:
         return {}
-    return ret
+
+    ret1 = {}
+    for k in ret.keys():
+        if ret[k] != 0:
+            #print (ret[k])
+            ret1[k] = ret[k]
+    return ret1
 
 
 def findPaths(g: nx.Graph, fr, to, req = 10):

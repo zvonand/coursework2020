@@ -5,6 +5,7 @@ import networkx as nx
 import pickle
 import complicated
 import prec_wts.algo as pw
+import prec_paths.algo as pp
 import mcmf
 
 
@@ -21,7 +22,7 @@ if __name__ == "__main__":
         g = nx.Graph(g)
 
     #print ("{:25s}   nodes: {:3d}   time: ".format(sys.argv[1], g.number_of_nodes()))
-    #print(pw.findPaths(sys.argv[1], g, 1, 4, 8))
     #print(complicated.findPaths(g, 1, 4, 9))
-    print(mcmf.findPaths(g, 1, 4, 10))
-    #print(pw.findPaths(g, 1, 4))
+    #print(mcmf.findPaths(g, 1, 4, 10))
+    print(pp.findPaths(sys.argv[1][5:], g, 1, 4, 1080))
+    #print(pw.findPaths(sys.argv[1][5:], g, 1, 4, 1080))

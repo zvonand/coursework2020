@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.15)  25 MAY 2020 02:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.26)  27 MAY 2020 23:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -375,7 +375,14 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tocbibind/tocbibind.sty
+Package: tocbibind 2010/10/13 v1.5k extra ToC listings
+Package tocbibind Info: The document has section divisions on input line 50.
+
+
+Package tocbibind Note: Using section or other style headings.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 \c@tracingmulticols=\count190
 \mult@box=\box47
@@ -445,6 +452,14 @@ Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 \colbreak@box=\box92
 \mc@col@check@num=\count199
 )
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count266
+\float@exts=\toks24
+\float@box=\box93
+\@float@everytoks=\toks25
+\@floatcapt=\box94
+)
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
@@ -454,9 +469,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2019/11/07 v1.0c TeX engine tests
 ))
-\Gm@cnth=\count266
-\Gm@cntv=\count267
-\c@Gm@tempcnt=\count268
+\Gm@cnth=\count267
+\Gm@cntv=\count268
+\c@Gm@tempcnt=\count269
 \Gm@bindingoffset=\dimen156
 \Gm@wd@mp=\dimen157
 \Gm@odd@mp=\dimen158
@@ -465,12 +480,12 @@ Package: iftex 2019/11/07 v1.0c TeX engine tests
 \Gm@layoutheight=\dimen161
 \Gm@layouthoffset=\dimen162
 \Gm@layoutvoffset=\dimen163
-\Gm@dimlist=\toks24
+\Gm@dimlist=\toks26
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count269
-\l__pdf_internal_box=\box93
+\l__kernel_color_stack_int=\count270
+\l__pdf_internal_box=\box95
 )
 (./k2020.aux
 LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 4
@@ -480,36 +495,36 @@ File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 ))
 \openout1 = `k2020.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count270
+\scratchcounter=\count271
 \scratchdimen=\dimen164
-\scratchbox=\box94
-\nofMPsegments=\count271
-\nofMParguments=\count272
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count273
+\scratchbox=\box96
+\nofMPsegments=\count272
+\nofMParguments=\count273
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count274
 \MPscratchDim=\dimen165
-\MPnumerator=\count274
-\makeMPintoPDFobject=\count275
-\everyMPtoPDFconversion=\toks26
+\MPnumerator=\count275
+\makeMPintoPDFobject=\count276
+\everyMPtoPDFconversion=\toks28
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -553,16 +568,17 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<msu.png, id=1, 250.9375pt x 135.50626pt>
-File: msu.png Graphic file (type png)
-<use msu.png>
-Package pdftex.def Info: msu.png  used on input line 21.
-(pdftex.def)             Requested size: 307.2929pt x 165.95833pt.
+<pics/msu.png, id=1, 238.8925pt x 130.4875pt>
+File: pics/msu.png Graphic file (type png)
+<use pics/msu.png>
+Package pdftex.def Info: pics/msu.png  used on input line 24.
+(pdftex.def)             Requested size: 307.2929pt x 167.85966pt.
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./msu.png>] (./k2020.toc
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./pics/msu.png>]
+[2] (./k2020.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
@@ -573,67 +589,175 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@toc=\write3
 \openout3 = `k2020.toc'.
 
- [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 83--87
+ [3] [4]
+<pics/wrout.png, id=25, 1572.87625pt x 838.13126pt>
+File: pics/wrout.png Graphic file (type png)
+<use pics/wrout.png>
+Package pdftex.def Info: pics/wrout.png  used on input line 82.
+(pdftex.def)             Requested size: 179.25159pt x 95.50702pt.
+<pics/woutrout.png, id=26, 1570.86874pt x 837.1275pt>
+File: pics/woutrout.png Graphic file (type png)
+<use pics/woutrout.png>
+Package pdftex.def Info: pics/woutrout.png  used on input line 87.
+(pdftex.def)             Requested size: 179.25159pt x 95.52039pt.
+
+Overfull \hbox (2.22168pt too wide) in paragraph at lines 80--90
+[]$[]$ $[]$ 
+ []
+
+[5 <./pics/wrout.png> <./pics/woutrout.png>] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 111--116
 
  []
 
-[4]
-Overfull \hbox (4.9074pt too wide) in paragraph at lines 114--115
+<pics/isect.png, id=35, 1777.64125pt x 1235.61626pt>
+File: pics/isect.png Graphic file (type png)
+<use pics/isect.png>
+Package pdftex.def Info: pics/isect.png  used on input line 120.
+(pdftex.def)             Requested size: 230.46576pt x 160.18326pt.
+<pics/noisect.png, id=36, 1777.64125pt x 1232.605pt>
+File: pics/noisect.png Graphic file (type png)
+<use pics/noisect.png>
+Package pdftex.def Info: pics/noisect.png  used on input line 125.
+(pdftex.def)             Requested size: 230.46576pt x 159.79288pt.
+
+Overfull \hbox (2.22168pt too wide) in paragraph at lines 118--128
+[]$[]$ $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--133
+
+ []
+
+[7 <./pics/isect.png> <./pics/noisect.png>] [8]
+Overfull \hbox (26.78056pt too wide) in paragraph at lines 150--151
+\T2A/cmr/m/n/12 рј-бер гра-фа $\OML/cmm/m/it/12 G$\T2A/cmr/m/n/12 , каж-дые два
+ со-сед-них эле-мен-та ко-то-рой ин-ци-дент-ны: $\OML/cmm/m/it/12 P[] \OT1/cmr/
+m/n/12 = \OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 s; e[]; v[]; :::; v[]; e[]; d\OMS/c
+msy/m/n/12 g$\T2A/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (0.69603pt too wide) in paragraph at lines 162--163
 []\T2A/cmr/m/n/12 Стоимостью от-дель-но взя-то-го марш-ру-та бу-дем счи-тать $\
-OML/cmm/m/it/12 Cost\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 P[]\OT1/cmr/m/n/12 ) = []
+OML/cmm/m/it/12 cost\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 P[]\OT1/cmr/m/n/12 ) = []
  + []$
  []
 
-
-Overfull \hbox (33.16273pt too wide) in paragraph at lines 125--126
+[9]
+Overfull \hbox (28.95137pt too wide) in paragraph at lines 173--174
 []\T2A/cmr/bx/it/12 Необходимо най-ти \T2A/cmr/m/n/12 до-пу-сти-мое мно-же-ство
- марш-ру-тов ми-ни-маль-ной сто-и-мо-сти: $[] \OML/cmm/m/it/12 Cost\OT1/cmr/m/n
+ марш-ру-тов ми-ни-маль-ной сто-и-мо-сти: $[] \OML/cmm/m/it/12 cost\OT1/cmr/m/n
 /12 (\OML/cmm/m/it/12 P\OT1/cmr/m/n/12 )$\T2A/cmr/m/n/12 ,
  []
 
-[5] [6] [7] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
+[10] [11]
+<pics/greedy1.png, id=68, 822.07124pt x 606.265pt>
+File: pics/greedy1.png Graphic file (type png)
+<use pics/greedy1.png>
+Package pdftex.def Info: pics/greedy1.png  used on input line 200.
+(pdftex.def)             Requested size: 179.25159pt x 132.1946pt.
+<pics/greedy2.png, id=69, 1063.975pt x 776.9025pt>
+File: pics/greedy2.png Graphic file (type png)
+<use pics/greedy2.png>
+Package pdftex.def Info: pics/greedy2.png  used on input line 205.
+(pdftex.def)             Requested size: 179.25159pt x 130.88622pt.
+
+Overfull \hbox (2.22168pt too wide) in paragraph at lines 198--208
+[]$[]$ $[]$ 
+ []
+
+[12 <./pics/greedy1.png> <./pics/greedy2.png>]
+Overfull \hbox (2.75743pt too wide) in paragraph at lines 224--227
+[]\T2A/cmr/m/n/12 Существует мно-же-ство ал-го-рит-мов по-ис-ка мак-си-маль-но-
+го по-то-ка, та-кие как ал-го-ритм Форда-
+ []
+
+<pics/mc_bf.png, id=75, 1471.4975pt x 991.705pt>
+File: pics/mc_bf.png Graphic file (type png)
+<use pics/mc_bf.png>
+Package pdftex.def Info: pics/mc_bf.png  used on input line 238.
+(pdftex.def)             Requested size: 230.46576pt x 155.3167pt.
+<pics/mc_af.png, id=76, 1451.4225pt x 995.72pt>
+File: pics/mc_af.png Graphic file (type png)
+<use pics/mc_af.png>
+Package pdftex.def Info: pics/mc_af.png  used on input line 243.
+(pdftex.def)             Requested size: 230.46576pt x 158.10298pt.
+
+Overfull \hbox (2.22168pt too wide) in paragraph at lines 236--246
+[]$[]$ $[]$ 
+ []
+
+[13]
+Overfull \hbox (13.91139pt too wide) in paragraph at lines 263--274
+ [] 
+ []
+
+[14 <./pics/mc_bf.png> <./pics/mc_af.png>] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 309--310
 
  []
 
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 337--338
 
  []
 
-[10] [11] [12] (./k2020.aux) ) 
+[18] [19]
+<pics/ch1.png, id=105, 1439.3775pt x 881.2925pt>
+File: pics/ch1.png Graphic file (type png)
+<use pics/ch1.png>
+Package pdftex.def Info: pics/ch1.png  used on input line 389.
+(pdftex.def)             Requested size: 332.89412pt x 203.82259pt.
+ [20]
+<pics/ch2.png, id=109, 1393.205pt x 811.03pt>
+File: pics/ch2.png Graphic file (type png)
+<use pics/ch2.png>
+Package pdftex.def Info: pics/ch2.png  used on input line 395.
+(pdftex.def)             Requested size: 332.89412pt x 193.7849pt.
+<pics/median.png, id=110, 1391.1975pt x 819.06pt>
+File: pics/median.png Graphic file (type png)
+<use pics/median.png>
+Package pdftex.def Info: pics/median.png  used on input line 401.
+(pdftex.def)             Requested size: 332.89412pt x 195.97852pt.
+ [21 <./pics/ch1.png> <./pics/ch2.png> <./pics/median.png>]
+[22] [23] [24] (./k2020.aux) ) 
 Here is how much of TeX's memory you used:
- 4295 strings out of 482543
- 55264 string characters out of 5955241
- 308356 words of memory out of 5000000
- 19271 multiletter control sequences out of 15000+600000
- 545565 words of font info for 53 fonts, out of 8000000 for 9000
+ 4544 strings out of 482543
+ 58710 string characters out of 5955241
+ 310911 words of memory out of 5000000
+ 19496 multiletter control sequences out of 15000+600000
+ 548886 words of font info for 63 fonts, out of 8000000 for 9000
  497 hyphenation exceptions out of 8191
- 35i,5n,35p,1093b,291s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 35i,8n,35p,1892b,298s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/andrez/.texlive2019/texmf-var/fonts/pk/lj
 four/lh/lh-t2a/labx1000.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/lj
 four/lh/lh-t2a/labi1200.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/lj
-four/lh/lh-t2a/lati1200.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/lj
 four/jknappen/ec/tcrm1200.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/
+ljfour/lh/lh-t2a/lati1200.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/
 ljfour/lh/lh-t2a/labx1200.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/
 ljfour/lh/lh-t2a/labx1440.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/
+ljfour/lh/lh-t2a/labx0900.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/
 ljfour/lh/lh-t2a/larm1200.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/
 ljfour/lh/lh-t2a/larm2074.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/
 ljfour/lh/lh-t2a/labx2488.600pk> </home/andrez/.texlive2019/texmf-var/fonts/pk/
 ljfour/lh/lh-t2a/larm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on k2020.pdf (12 pages, 234676 bytes).
+fonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb>
+Output written on k2020.pdf (24 pages, 1689962 bytes).
 PDF statistics:
- 526 PDF objects out of 1000 (max. 8388607)
- 96 compressed objects within 1 object stream
+ 710 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

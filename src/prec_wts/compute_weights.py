@@ -67,43 +67,42 @@ for tp in files:
             print('Warning: graph was converted from MultiGraph to Graph')
             g = nx.Graph(g)
 
-        print(f'Processing: {tp}, nodes: {g.number_of_nodes()}, edges: {g.number_of_edges()}')
+        for a, b in g.edges:
+            g[a][b]['cap'] = 100
 
-        wts = {}
+        print(f'Processing: {tp}, nodes: {g.number_of_nodes()}, edges: {g.number_of_edges()}')
 
         nodes_lst = sorted(list(g.nodes))
 
+        wts = collections.defaultdict(dict)
         for i in range(len(nodes_lst)-1):
             for j in range(i+1, len(nodes_lst)):
-                if g.has_edge(nodes_lst[i], nodes_lst[j]):
-                    wts[(nodes_lst[i], nodes_lst[j])] = 0
+                for a, b in g.edges:
+                    wts[(nodes_lst[i], nodes_lst[j])][tuple(sorted((a, b)))] = 0
 
         for i in range(len(nodes_lst)-1):
             for j in range(i+1, len(nodes_lst)):
-                paths = nx.all_simple_paths(g, nodes_lst[i], nodes_lst[j])
+                a, b = nodes_lst[i], nodes_lst[j]
+                paths = nx.all_simple_paths(g, a, b)
                 for path in paths:
                     cost = pathCost(g, path)
-                    for k in range(len(path) - 1):
-                        if path[k] < path[k+1]:
-                            wts[(path[k], path[k+1])] += cost
-                        else:
-                            wts[(path[k+1], path[k])] += cost
+                    for l in range(len(path) - 1):
+                        wts[tuple(sorted((a, b)))][tuple(sorted((path[l], path[l+1])))] += cost
 
-        mn, mx = wts[list(g.edges)[0]], wts[list(g.edges)[0]]
-        for i in wts.keys():
-            if wts[i] < mn:
-                mn = wts[i]
-            if wts[i] > mx:
-                mx = wts[i]
+                #reducing by common minimum
+                common_min = min(wts[tuple(sorted((a, b)))].values())
+                for key in wts[tuple(sorted((a, b)))].keys():
+                    wts[tuple(sorted((a, b)))][key] -= common_min
+                #reducing to 0..199
+                common_max = max(wts[tuple(sorted((a, b)))].values())
+                div_coeff = common_max // 100
+                if div_coeff > 1:
+                    for key in wts[tuple(sorted((a, b)))].keys():
+                        wts[tuple(sorted((a, b)))][key] = wts[tuple(sorted((a, b)))][key] // div_coeff
 
-        koeff = 100 / (mx - mn)
-        for i in wts.keys():
-            wts[i] = int((wts[i] - mn) * koeff)
-            g[i[0]][i[1]]['wt'] = wts[i]
-
-
+        wts = dict(wts)
         with open('edge_weights/' + tp, 'wb') as fp:
-            pickle.dump(g, fp)
+            pickle.dump(wts, fp)
 
         print(f'Done with: {tp}')
     except Timeout:
